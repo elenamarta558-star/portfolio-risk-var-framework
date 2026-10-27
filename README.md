@@ -1,13 +1,13 @@
 # Quantitative Market Risk & Portfolio Framework
 
-## 🎯 Core Research Question
+##  Core Research Question
 **"How much can we statistically trust Value at Risk (VaR), and where does its structural architecture fail under severe macro regimes?"**
 
 Instead of treating risk as an isolated calculation, this project builds a dynamic rolling risk engine on a multi-asset **60/40-style portfolio** and evaluates five VaR methodologies with formal statistical backtests. It then checks the two main stress episodes in the sample (**COVID-19 crash, 2020** and **Fed rate-hike cycle, 2022**) against horizon-consistent VaR bounds and a deterministic macro shock, to show where rolling statistical models work, where they fail, and why.
 
 ---
 
-## 🏗️ Portfolio & Repository Structure
+##  Portfolio & Repository Structure
 
 All parameters live in `config.py`.
 
@@ -48,7 +48,7 @@ The first run downloads prices from Yahoo Finance and **freezes** them in `data/
 
 ---
 
-## 🔬 Methodology
+##  Methodology
 
 The rolling engine uses a **500-day window** and a **99% confidence level**. Risk for day *t* uses only data up to *t-1* (no look-ahead). The first 500 days are the estimation burn-in, so the backtest covers **2,545 trading days (13 Sep 2016 → 27 Oct 2026)**, with **25.45 violations expected** at 99%.
 
@@ -62,7 +62,7 @@ The rolling engine uses a **500-day window** and a **99% confidence level**. Ris
 
 ---
 
-## 📊 Results
+##  Results
 
 ### 1. The Normality Illusion (EDA, full sample)
 
@@ -99,7 +99,7 @@ Example backtest charts (all five are in `plots/`):
 
 ---
 
-## 🔥 Stress Testing (horizon-consistent)
+##  Stress Testing (horizon-consistent)
 
 Comparing a **1-day** VaR with a **multi-week or multi-month** loss is an apples-to-oranges comparison. Each historical episode is therefore compared with the average daily 99% Historical VaR over the sample (**≈ 2.00%**) scaled by the square-root-of-time rule, VaR × √T.
 
@@ -124,7 +124,7 @@ The 2022 loss of about -20% was spread over a whole year, so it sits inside the 
 
 ---
 
-## ✅ Conclusions
+##  Conclusions
 
 1.  **Fat tails matter.** Returns are strongly non-Gaussian, and the Normal-based models (Static, EWMA, MC Normal) underestimate tail frequency by roughly 1.8–2.2x.
 2.  **Only Historical and Student's t get frequency right**, yet **all five models fail independence and the joint test**: VaR can be right on average and still wrong *when it matters*.
@@ -132,7 +132,7 @@ The 2022 loss of about -20% was spread over a whole year, so it sits inside the 
 
 ---
 
-## ⚠️ Limitations
+##  Limitations
 
 *   The sample starts in Sep 2014 (BTC constraint) and has no 2008-style crisis.
 *   MC Student's t is fitted per window on portfolio returns; the MLE fit is sometimes unstable (visible as jagged spikes in its threshold chart, and extreme MC-t ES values in some windows). **ES is computed but not backtested.**
