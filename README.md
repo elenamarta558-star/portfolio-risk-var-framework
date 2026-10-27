@@ -143,5 +143,5 @@ The 2022 loss of about -20% was spread over a whole year, so it sits inside the 
 
 ---
 
-## 📦 Requirements
+##  Requirements
 `yfinance`, `pandas`, `numpy`, `scipy`, `matplotlib`, `seaborn` (see `requirements.txt`).
